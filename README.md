@@ -74,7 +74,7 @@ Here is the code (copy/pasted from the file that I made).
         decrypted_message = decrypt(encrypted_message, key)
         print('Decrypted message:\n%s' %decrypted_message)
 
-You can find the code, in this repository, in the file addsubtract.py.
+You can find the code [here](https://github.com/ataylor89/cryptography_tutorial/blob/main/addsubtract.py).
 
 I named the file "addsubtract" because it's a concise name for the encryption and decryption algorithms that I used.
 
