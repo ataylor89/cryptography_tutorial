@@ -96,7 +96,7 @@ RSA keys, for example, are hard to brute force, especially if you choose large e
 
 (The typical RSA key is based on two prime numbers that are 100 digits long or 200 digits long or even longer!)
 
-You can actually find the original publication of the RSA cryptography algorithm here: https://people.csail.mit.edu/rivest/Rsapaper.pdf.
+You can actually find the original publication of the RSA cryptography algorithm [here](https://people.csail.mit.edu/rivest/Rsapaper.pdf).
 
 The RSA algorithm uses advanced high school math. You don't need to know abstract algebra, real analysis, or topology to understand the research publication. It uses modular arithmetic and some important theorems from the theory of prime numbers.
 
