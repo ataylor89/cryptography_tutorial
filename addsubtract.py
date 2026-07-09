@@ -1,14 +1,12 @@
 import sys
 import base64
 
-modulus = sys.maxunicode + 1
-
 def encrypt(plaintext, key):
     ciphertext = ''
     for character in plaintext:
         codepoint = ord(character)
-        if codepoint + key >= modulus:
-            raise ValueError('Either the message or the key needs to be adjusted')
+        if codepoint + key > sys.maxunicode:
+            raise ValueError('codepoint + key > sys.maxunicode')
         target = codepoint + key
         ciphertext += chr(target)
     # print('Ciphertext:\n%s\n' %ciphertext)
@@ -22,7 +20,7 @@ def decrypt(ciphertext, key):
     for character in decoded_ciphertext:
         codepoint = ord(character)
         if codepoint - key < 0:
-            raise ValueError('Either the message or the key needs to be adjusted')
+            raise ValueError('codepoint - key < 0')
         source = codepoint - key
         plaintext += chr(source)
     return plaintext
