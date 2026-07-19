@@ -365,9 +365,9 @@ Now let's open the asencrypt.py file once again.
     % ls
     __pycache__			asdecrypt.py			how_to_run_python_code.md
     addsubtract.py	    asencrypt.py			README.md
-    % vim asencrypt.py
+    % vi asencrypt.py
 
-After you type the command "vim asencrypt.py" and open the asencrypt.py file, you can see that line numbering was added.
+After you type the command "vi asencrypt.py" and open the asencrypt.py file, you can see that line numbering was added.
 
 Also, the tab key should correspond to four spaces, or four visual columns, if you set tabstop to 4 and turned on the expandtab feature.
 
