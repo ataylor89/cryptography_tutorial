@@ -111,7 +111,7 @@ Now let's write a program.
     def main():
         argparser = argparse.ArgumentParser(prog='asencrypt.py', description='Encrypt a message using the addsubtract algorithm')
         group = argparser.add_mutually_exclusive_group(required=True)
-        group.add_argument('-m', '--message', type=str, nargs='?')
+        group.add_argument('-m', '--message', type=str)
         group.add_argument('-i', '--inputfile', type=str)
         argparser.add_argument('-k', '--key', type=float, default=10e5)
         argparser.add_argument('-o', '--outputfile', type=str)
@@ -186,7 +186,7 @@ Now that we're back in insert mode, let's write our program.
     def main():
         argparser = argparse.ArgumentParser(prog='asdecrypt.py', description='Decrypt a message using the addsubtract algorithm')
         group = argparser.add_mutually_exclusive_group(required=True)
-        group.add_argument('-m', '--message', type=str, nargs='?')
+        group.add_argument('-m', '--message', type=str)
         group.add_argument('-i', '--inputfile', type=str)
         argparser.add_argument('-k', '--key', type=float, default=10e5)
         argparser.add_argument('-o', '--outputfile', type=str)
