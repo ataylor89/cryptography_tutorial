@@ -2,7 +2,9 @@
 
 ## Foreword
 
-This tutorial assumes that you have already installed Python 3, and that the python3 interpreter is already present in your PATH variable. The shell program (zsh or bash) searches your PATH variable for the first directory that contains the python3 interpreter, and uses that directory to build a path to the python3 interpreter. If the shell program can't find a command in your PATH variable, and it can't find the command in your aliases, then it simply says, "command not found". I wanted to make this clear at the beginning of my post, because the tutorial assumes that Python 3 is already installed. Sometimes Python 3 comes pre-installed with your computer. If it didn't come pre-installed with your computer, then you can download it from the python.org website, and install it. You can also find instructions for installing Python 3 on the python.org website.
+This tutorial assumes that you have already installed Python 3, and that the python3 interpreter is already present in your PATH variable. The shell program (zsh or bash) searches your PATH variable for the first directory that contains the python3 interpreter, and uses that directory to build a path to the python3 interpreter. If the shell program can't find a command in your PATH variable, and it can't find the command in your aliases, then it simply says, "command not found".
+
+I wanted to make this clear at the beginning of my post, because the tutorial assumes that Python 3 is already installed. Sometimes Python 3 comes pre-installed with your computer. If it didn't come pre-installed with your computer, then you can download it from the python.org website, and install it. You can also find instructions for installing Python 3 on the python.org website.
 
 ## Tutorial
 
