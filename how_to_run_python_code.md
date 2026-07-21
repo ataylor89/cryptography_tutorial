@@ -10,7 +10,7 @@ I wanted to make this clear at the beginning of my post, because the tutorial as
 
 ## Tutorial
 
-I have posted Python code to this [blog](https://artofproblemsolving.com/community/c4848563), specifically in the blog post entitled "Cryptography tutorial", and I thought it would help to give some pointers on how to run Python code.
+I have posted Python code to this blog, specifically in the blog post entitled "Cryptography tutorial", and I thought it would help to give some pointers on how to run Python code.
 
 I can think of at least three ways to run Python code:
 
