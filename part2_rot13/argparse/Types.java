@@ -1,9 +1,32 @@
 package argparse;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Types {
 
+    private static final Set<Class> supportedTypes;
+
+    static {
+        supportedTypes = new HashSet<>(Set.of(
+            String.class,
+            Short.class,
+            Integer.class,
+            Long.class,
+            Double.class,
+            Float.class,
+            Boolean.class));
+    }
+
+    public static boolean supports(Class type) {
+        return supportedTypes.contains(type);
+    }
+
     public static boolean is(String arg, Class type) {
-        if (arg == null) {
+        if (!supports(type)) {
+            throw new IllegalArgumentException(type.getName() + " not supported");
+        }
+        else if (arg == null) {
             return true;
         }
         else if (type.equals(String.class)) {
@@ -53,15 +76,14 @@ public class Types {
             return arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false");
         }
         else {
-            throw new IllegalArgumentException(type.getName() + " not supported");
+            return false;
         }
     }
 
     public static <T> T parse(String arg, Class<T> type) {
-        if (!is(arg, type)) {
-            throw new IllegalArgumentException("Argument is not of type " + type.getName());
-        }
-        else if (arg == null) {
+        validate(arg, type);
+
+        if (arg == null) {
             return type.cast(arg);
         }
         else if (type.equals(String.class)) {
@@ -86,13 +108,13 @@ public class Types {
             return type.cast(Boolean.valueOf(arg));
         }
         else {
-            throw new IllegalArgumentException(type.getName() + " not supported");
+            return type.cast(arg);
         }
     }
 
     public static void validate(String arg, Class type) {
         if (!is(arg, type)) {
-            throw new IllegalArgumentException("Argument is not of the required type");
+            throw new IllegalArgumentException("Argument is not of type " + type.getName());
         }
     }
 }
