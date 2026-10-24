@@ -1,6 +1,6 @@
 import argparse.ArgumentParser;
-import argparse.Options;
 import argparse.Option;
+import argparse.Options;
 import argparse.ParseResult;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -16,17 +16,19 @@ public class Rot13 {
         table = new HashMap<>();
         int ord_a = (int) 'a';
         int ord_A = (int) 'A';
+        char source;
+        char target;
         for (int i = 0; i < 26; i++) {
-            char source = (char) (ord_a + i);
-            char target = (char) (ord_a + (i + 13) % 26);
-            char Source = (char) (ord_A + i);
-            char Target = (char) (ord_A + (i + 13) % 26);
+            source = (char) (ord_a + i);
+            target = (char) (ord_a + (i + 13) % 26);
             table.put(source, target);
-            table.put(Source, Target);
+            source = (char) (ord_A + i);
+            target = (char) (ord_A + (i + 13) % 26);
+            table.put(source, target);
         }
     }
 
-    public static String rotate(String message) {
+    public static String rot13(String message) {
         StringBuilder builder = new StringBuilder();
         for (char ch : message.toCharArray()) {
             if (table.containsKey(ch)) {
@@ -72,7 +74,7 @@ public class Rot13 {
                 System.exit(1);
             }
         }
-        String output = Rot13.rotate(message);
+        String output = rot13(message);
         if (outputfile == null) {
             System.out.println(output);
         }
