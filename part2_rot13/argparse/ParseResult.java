@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class ParseResult {
     
-    private List<String> positionalArgs;
+    private List<Object> positionalArgs;
     private Map<String, Object> options;
 
     public ParseResult() {
@@ -15,11 +15,11 @@ public class ParseResult {
         this.options = new HashMap<>();
     }
 
-    public void setPositionalArgs(List<String> positionalArgs) {
+    public void setPositionalArgs(List<Object> positionalArgs) {
         this.positionalArgs = positionalArgs;
     }
 
-    public List<String> getPositionalArgs() {
+    public List<Object> getPositionalArgs() {
         return positionalArgs;
     }
 
@@ -31,7 +31,7 @@ public class ParseResult {
         return options;
     }
 
-    public String getPositionalArg(int index) {
+    public Object getPositionalArg(int index) {
         if (index < positionalArgs.size()) {
             return positionalArgs.get(index);
         }
@@ -47,7 +47,7 @@ public class ParseResult {
         StringBuilder builder = new StringBuilder();
         builder.append("Positional args\n");
         for (int i = 0; i < positionalArgs.size(); i++) {
-            String arg = positionalArgs.get(i);
+            Object arg = positionalArgs.get(i);
             builder.append("Arg ").append(i).append(": ").append(arg);
             if (i + 1 < positionalArgs.size()) {
                 builder.append("\n");

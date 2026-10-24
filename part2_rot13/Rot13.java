@@ -47,7 +47,7 @@ public class Rot13 {
         options.addOption("i", "inputfile", true, "Path to input file");
         options.addOption("o", "outputfile", true, "Path to output file");
         ParseResult result = parser.parse(options, args);
-        String message = result.getPositionalArg(0);
+        String message = (String) result.getPositionalArg(0);
         String inputfile = (String) result.getOption("inputfile");
         String outputfile = (String) result.getOption("outputfile");
         if (message == null && inputfile == null) {
