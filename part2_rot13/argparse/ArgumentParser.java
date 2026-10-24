@@ -21,6 +21,8 @@ public class ArgumentParser {
                     else {
                         value = "true";
                     }
+                    Class type = option.getType();
+                    Types.validate(value, type);
                     String longName = option.getLongName();
                     result.getOptions().put(longName, value);
                 }
@@ -36,5 +38,5 @@ public class ArgumentParser {
             }
         }
         return result;
-    }  
+    }
 }

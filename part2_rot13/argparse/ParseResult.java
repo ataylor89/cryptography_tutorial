@@ -40,21 +40,7 @@ public class ParseResult {
 
     public <T> T getPositionalArg(int index, Class<T> type) {
         String arg = getPositionalArg(index);
-        if (arg == null) {
-            return type.cast(arg);
-        }
-        else if (type.equals(String.class)) {
-            return type.cast(arg);
-        }
-        else if (type.equals(Integer.class)) {
-            return type.cast(Integer.valueOf(arg));
-        }
-        else if (type.equals(Boolean.class)) {
-            return type.cast(Boolean.valueOf(arg));
-        }
-        else {
-            throw new IllegalArgumentException(type.getName() + " not supported");
-        }
+        return Types.parse(arg, type);
     }
 
     public String getOption(String longName) {
@@ -63,21 +49,7 @@ public class ParseResult {
 
     public <T> T getOption(String longName, Class<T> type) {
         String option = options.get(longName);
-        if (option == null) {
-            return type.cast(option);
-        }
-        else if (type.equals(String.class)) {
-            return type.cast(option);
-        }
-        else if (type.equals(Integer.class)) {
-            return type.cast(Integer.valueOf(option));
-        }
-        else if (type.equals(Boolean.class)) {
-            return type.cast(Boolean.valueOf(option));
-        }
-        else {
-            throw new IllegalArgumentException(type.getName() + " not supported");
-        }
+        return Types.parse(option, type);
     }
 
     @Override
