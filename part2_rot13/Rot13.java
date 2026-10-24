@@ -50,16 +50,14 @@ public class Rot13 {
         String message = null;
         String inputfile = null;
         String outputfile = null;
-        if (result.hasOption("i", "inputfile")) {
-            Option option = result.getOption("i", "inputfile");
-            inputfile = (String) option.getValue();    
-        }
-        if (result.hasOption("o", "outputfile")) {
-            Option option = result.getOption("o", "outputfile");
-            outputfile = (String) option.getValue();
-        }
         if (result.getPositionalArgs().size() > 0) {
             message = result.getPositionalArgs().get(0);
+        }
+        if (result.hasOption("i", "inputfile")) {
+            inputfile = (String) result.getOption("i", "inputfile").getValue();
+        }
+        if (result.hasOption("o", "outputfile")) {
+            outputfile = (String) result.getOption("o", "outputfile").getValue();
         }
         if (message == null && inputfile == null) {
             System.out.println("A message or an input file is required.");
