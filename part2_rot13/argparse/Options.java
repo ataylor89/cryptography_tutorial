@@ -28,6 +28,10 @@ public class Options {
     public void addOption(String shortName, String longName, boolean hasArg, String description) {
         Option option = new Option(shortName, longName, hasArg, description);
         addOption(option);
+
+    public void addOption(String shortName, String longName, boolean hasArg, Class type, String description) {
+        Option option = new Option(shortName, longName, hasArg, type, description);
+        addOption(option);
     }
 
     public boolean hasOption(String name) {
