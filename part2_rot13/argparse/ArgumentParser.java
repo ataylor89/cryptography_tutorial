@@ -9,20 +9,20 @@ public class ArgumentParser {
         while (index < args.length) {
             if (args[index].startsWith("-")) {
                 String name = args[index].startsWith("--") ? args[index].substring(2) : args[index].substring(1);
+                Object value = null;
                 if (options.hasOption(name)) {
                     Option option = options.getOption(name);
                     if (option.hasArg()) {
                         if (index + 1 < args.length) {
-                            String value = args[index + 1];
-                            option.setValue(value);
+                            value = args[index + 1];
                             skipNext = true;
                         }
                     }
                     else {
-                        Boolean value = Boolean.TRUE;
-                        option.setValue(value);
+                        value = Boolean.TRUE;
                     }
-                    result.getOptions().put(name, option);
+                    String longName = option.getLongName();
+                    result.getOptions().put(longName, value);
                 }
             }
             else {
