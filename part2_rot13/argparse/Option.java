@@ -6,7 +6,6 @@ public class Option {
     private String longName;
     private boolean hasArg;
     private String description;
-    private Object value;
 
     public Option(String shortName, String longName, boolean hasArg, String description) {
         this.shortName = shortName;
@@ -45,13 +44,5 @@ public class Option {
 
     public String getDescription() {
         return description;
-    }
-
-    public void setValue(Object value) {
-        this.value = value;
-    }
-
-    public Object getValue() {
-        return value;
     }
 }

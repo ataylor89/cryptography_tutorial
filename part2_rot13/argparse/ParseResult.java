@@ -7,39 +7,77 @@ import java.util.Map;
 
 public class ParseResult {
     
-    private List<Object> positionalArgs;
-    private Map<String, Object> options;
+    private List<String> positionalArgs;
+    private Map<String, String> options;
 
     public ParseResult() {
         this.positionalArgs = new ArrayList<>();
         this.options = new HashMap<>();
     }
 
-    public void setPositionalArgs(List<Object> positionalArgs) {
+    public void setPositionalArgs(List<String> positionalArgs) {
         this.positionalArgs = positionalArgs;
     }
 
-    public List<Object> getPositionalArgs() {
+    public List<String> getPositionalArgs() {
         return positionalArgs;
     }
 
-    public void setOptions(Map<String, Object> options) {
+    public void setOptions(Map<String, String> options) {
         this.options = options;        
     }
 
-    public Map<String, Object> getOptions() {
+    public Map<String, String> getOptions() {
         return options;
     }
 
-    public Object getPositionalArg(int index) {
+    public String getPositionalArg(int index) {
         if (index < positionalArgs.size()) {
             return positionalArgs.get(index);
         }
         return null;
     }
 
-    public Object getOption(String longName) {
+    public <T> T getPositionalArg(int index, Class<T> type) {
+        String arg = getPositionalArg(index);
+        if (arg == null) {
+            return type.cast(arg);
+        }
+        else if (type.equals(String.class)) {
+            return type.cast(arg);
+        }
+        else if (type.equals(Integer.class)) {
+            return type.cast(Integer.valueOf(arg));
+        }
+        else if (type.equals(Boolean.class)) {
+            return type.cast(Boolean.valueOf(arg));
+        }
+        else {
+            throw new IllegalArgumentException(type.getName() + " not supported");
+        }
+    }
+
+    public String getOption(String longName) {
         return options.get(longName);
+    }
+
+    public <T> T getOption(String longName, Class<T> type) {
+        String option = options.get(longName);
+        if (option == null) {
+            return type.cast(option);
+        }
+        else if (type.equals(String.class)) {
+            return type.cast(option);
+        }
+        else if (type.equals(Integer.class)) {
+            return type.cast(Integer.valueOf(option));
+        }
+        else if (type.equals(Boolean.class)) {
+            return type.cast(Boolean.valueOf(option));
+        }
+        else {
+            throw new IllegalArgumentException(type.getName() + " not supported");
+        }
     }
 
     @Override
@@ -47,7 +85,7 @@ public class ParseResult {
         StringBuilder builder = new StringBuilder();
         builder.append("Positional args\n");
         for (int i = 0; i < positionalArgs.size(); i++) {
-            Object arg = positionalArgs.get(i);
+            String arg = positionalArgs.get(i);
             builder.append("Arg ").append(i).append(": ").append(arg);
             if (i + 1 < positionalArgs.size()) {
                 builder.append("\n");
@@ -56,9 +94,9 @@ public class ParseResult {
         builder.append("\n\n").append("Options\n");
         int counter = 0;
         int size = options.size();
-        for (Map.Entry<String, Object> entry : options.entrySet()) {
+        for (Map.Entry<String, String> entry : options.entrySet()) {
             String name = entry.getKey();
-            Object value = entry.getValue();
+            String value = entry.getValue();
             builder.append(name).append(": ").append(value);
             if (counter + 1 < size) {
                 builder.append("\n");

@@ -9,7 +9,7 @@ public class ArgumentParser {
         while (index < args.length) {
             if (args[index].startsWith("-")) {
                 String name = args[index].startsWith("--") ? args[index].substring(2) : args[index].substring(1);
-                Object value = null;
+                String value = null;
                 if (options.hasOption(name)) {
                     Option option = options.getOption(name);
                     if (option.hasArg()) {
@@ -19,7 +19,7 @@ public class ArgumentParser {
                         }
                     }
                     else {
-                        value = Boolean.TRUE;
+                        value = "true";
                     }
                     String longName = option.getLongName();
                     result.getOptions().put(longName, value);
