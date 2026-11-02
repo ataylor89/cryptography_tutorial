@@ -1,6 +1,10 @@
 package argparse;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Types {
@@ -10,84 +14,29 @@ public class Types {
     static {
         supportedTypes = new HashSet<>(Set.of(
             String.class,
+            Byte.class,
             Short.class,
             Integer.class,
             Long.class,
             Double.class,
             Float.class,
-            Boolean.class));
+            Boolean.class,
+            List.class));
     }
 
     public static boolean supports(Class type) {
         return supportedTypes.contains(type);
     }
 
-    public static boolean is(String arg, Class type) {
-        if (!supports(type)) {
-            throw new IllegalArgumentException(type.getName() + " not supported");
-        }
-        else if (arg == null) {
-            return true;
-        }
-        else if (type.equals(String.class)) {
-            return true;
-        }
-        else if (type.equals(Short.class)) {
-            try {
-                Short.parseShort(arg);
-                return true;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        }
-        else if (type.equals(Integer.class)) {
-            try {
-                Integer.parseInt(arg);
-                return true;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        }
-        else if (type.equals(Long.class)) {
-            try {
-                Long.parseLong(arg);
-                return true;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        }
-        else if (type.equals(Double.class)) {
-            try {
-                Double.parseDouble(arg);
-                return true;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        }
-        else if (type.equals(Float.class)) {
-            try {
-                Float.parseFloat(arg);
-                return true;
-            } catch (NumberFormatException e) {
-                return false;
-            }
-        }
-        else if (type.equals(Boolean.class)) {
-            return arg.equalsIgnoreCase("true") || arg.equalsIgnoreCase("false");
-        }
-        else {
-            return false;
-        }
-    }
-
-    public static <T> T parse(String arg, Class<T> type) {
-        validate(arg, type);
-
+    public static <T> T parse(String arg, Class<T> type) throws ParseException {
         if (arg == null) {
-            return type.cast(arg);
+            return null;
         }
         else if (type.equals(String.class)) {
             return type.cast(arg);
+        }
+        else if (type.equals(Byte.class)) {
+            return type.cast(Byte.valueOf(arg));
         }
         else if (type.equals(Short.class)) {
             return type.cast(Short.valueOf(arg));
@@ -108,13 +57,25 @@ public class Types {
             return type.cast(Boolean.valueOf(arg));
         }
         else {
-            return type.cast(arg);
+            throw new ParseException(
+                String.format("The type %s is not supported by the Type.parse method", type.getName()));
         }
     }
 
-    public static void validate(String arg, Class type) {
-        if (!is(arg, type)) {
-            throw new IllegalArgumentException("Argument is not of type " + type.getName());
+    public static <T> List<T> parseList(String arg, String delimiter, Class<T> type) throws ParseException {
+        if (arg == null) {
+            return null;
         }
+        List<T> result = new ArrayList<>();
+        try {
+            String[] tokens = arg.split(delimiter);
+            Method method = type.getMethod("valueOf", String.class);
+            for (String token : tokens) {
+                result.add(type.cast(method.invoke(null, token)));
+            }
+        } catch (Exception e) {
+            throw new ParseException("Unable to parse list of type " + type.getName());
+        }
+        return result;
     }
 }

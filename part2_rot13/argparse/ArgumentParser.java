@@ -1,35 +1,30 @@
 package argparse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArgumentParser {
 
-    public ParseResult parse(Options options, String[] args) {
-        ParseResult result = new ParseResult();
+    public ParseResult parse(Options options, String[] args) throws ParseException {
+        List<String> positionalArgs = new ArrayList<>();
         int index = 0;
         boolean skipNext = false;
         while (index < args.length) {
             if (args[index].startsWith("-")) {
                 String name = args[index].startsWith("--") ? args[index].substring(2) : args[index].substring(1);
-                String value = null;
-                if (options.hasOption(name)) {
-                    Option option = options.getOption(name);
-                    if (option.hasArg()) {
-                        if (index + 1 < args.length) {
-                            value = args[index + 1];
-                            skipNext = true;
-                        }
+                Option option = options.getOption(name);
+                if (option.hasArg()) {
+                    if (index + 1 < args.length) {
+                        option.setValue(args[index + 1]);
+                        skipNext = true;
                     }
-                    else {
-                        value = "true";
-                    }
-                    Class type = option.getType();
-                    Types.validate(value, type);
-                    String longName = option.getLongName();
-                    result.getOptions().put(longName, value);
+                }
+                else {
+                    option.setValue("true");
                 }
             }
             else {
-                String positionalArg = args[index];
-                result.getPositionalArgs().add(positionalArg);
+                positionalArgs.add(args[index]);
             }
             index++;
             if (skipNext) {
@@ -37,6 +32,6 @@ public class ArgumentParser {
                 skipNext = false;
             }
         }
-        return result;
+        return new ParseResult(positionalArgs, options);
     }
 }

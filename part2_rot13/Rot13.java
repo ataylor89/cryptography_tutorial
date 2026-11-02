@@ -1,6 +1,7 @@
 import argparse.ArgumentParser;
 import argparse.Option;
 import argparse.Options;
+import argparse.ParseException;
 import argparse.ParseResult;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -42,14 +43,22 @@ public class Rot13 {
     }
 
     public static void main(String[] args) {
-        ArgumentParser parser = new ArgumentParser();
-        Options options = new Options();
-        options.addOption("i", "inputfile", true, "Path to input file");
-        options.addOption("o", "outputfile", true, "Path to output file");
-        ParseResult result = parser.parse(options, args);
-        String message = result.getPositionalArg(0);
-        String inputfile = result.getOption("inputfile");
-        String outputfile = result.getOption("outputfile");
+        String message = null;
+        String inputfile = null;
+        String outputfile = null;
+        try {
+            ArgumentParser parser = new ArgumentParser();
+            Options options = new Options();
+            options.addOption("i", "inputfile", true, "Path to input file");
+            options.addOption("o", "outputfile", true, "Path to output file");
+            ParseResult result = parser.parse(options, args);
+            message = result.getPositionalArg(0);
+            inputfile = result.getParsedOptionValue("inputfile");
+            outputfile = result.getParsedOptionValue("outputfile");
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+            System.exit(1);
+        }
         if (message == null && inputfile == null) {
             System.out.println("A message or an input file is required.");
             System.exit(1);
