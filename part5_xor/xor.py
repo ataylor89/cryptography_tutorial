@@ -36,7 +36,7 @@ if __name__ == '__main__':
     mode_group.add_argument('-d', '--decrypt', action='store_true')
     key_group = arg_parser.add_mutually_exclusive_group(required=True)
     key_group.add_argument('-k', '--key', type=str)
-    key_group.add_argument('-kf', '--keyfile', type=str, default='key.txt')
+    key_group.add_argument('-kf', '--keyfile', type=str)
     arg_parser.add_argument('-o', '--outputfile', type=str)
     args = arg_parser.parse_args()
     if args.inputfile:
