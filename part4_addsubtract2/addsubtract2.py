@@ -31,7 +31,7 @@ def decrypt(ciphertext, key):
         plaintext += chr(source)
     return plaintext
 
-def main():
+if __name__ == '__main__':
     argparser = argparse.ArgumentParser(prog='addsubtract2.py', description='Encrypt or decrypt a message')
     message_group = argparser.add_mutually_exclusive_group(required=True)
     message_group.add_argument('message', type=str, nargs='?')
@@ -51,7 +51,7 @@ def main():
         key = [int(val) for val in args.key]
     except:
         print('Unable to parse key as a list of integers')
-        return 
+        sys.exit(1)
     if args.encrypt:
         output = encrypt(message, key)
     else:
@@ -61,6 +61,3 @@ def main():
             file.write(output)
     else:
         print(output, end='')
-
-if __name__ == '__main__':
-    main()
