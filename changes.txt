@@ -1,0 +1,17 @@
+Wednesday, November 25, 2026
+============================
+Originally, this tutorial included just one algorithm - addsubtract.
+
+I decided to expand the tutorial and add other algorithms.
+
+I am planning to add implementations of rot88, addsubtract2, xor, rsa, sha-256, and md5.
+
+I will create a dedicated part for each algorithm (e.g. part3_rot88 and part4_addsubtract2).
+
+Ideally, I would like to implement each algorithm in multiple languages.
+
+I am planning to use Python, Java, Perl, Ruby, and C to implement the algorithms.
+
+I think it's good to learn many languages - it gives you valuable data on programming.
+
+You can consider this a cryptography tutorial, and also a tutorial on programming in general.
