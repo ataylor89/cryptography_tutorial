@@ -30,14 +30,14 @@ if __name__ == '__main__':
     arg_parser = argparse.ArgumentParser(prog='xor.py', description='XOR encryption')
     message_group = arg_parser.add_mutually_exclusive_group(required=True)
     message_group.add_argument('message', type=str, nargs='?')
-    message_group.add_argument('-i', '--inputfile', type=str)
+    message_group.add_argument('-if', '--inputfile', type=str)
     mode_group = arg_parser.add_mutually_exclusive_group(required=True)
     mode_group.add_argument('-e', '--encrypt', action='store_true')
     mode_group.add_argument('-d', '--decrypt', action='store_true')
     key_group = arg_parser.add_mutually_exclusive_group(required=True)
     key_group.add_argument('-k', '--key', type=str)
     key_group.add_argument('-kf', '--keyfile', type=str)
-    arg_parser.add_argument('-o', '--outputfile', type=str)
+    arg_parser.add_argument('-of', '--outputfile', type=str)
     args = arg_parser.parse_args()
     if args.inputfile:
         with open(args.inputfile, 'r') as file:
