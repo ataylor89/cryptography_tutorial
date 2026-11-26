@@ -1,0 +1,31 @@
+Example usage
+=============
+
+Xor.java
+--------
+
+Example:
+
+    # cd to the part5_xor directory
+    % cd ~/Github/cryptography_tutorial/part5_xor
+
+    # Compile the Java source code into bytecode
+    % javac Xor.java ../lib/argparse/*.java
+
+    # Set the classpath
+    % export CLASSPATH=.:../lib
+
+    # Encrypt a message using the XOR algorithm; use a key of "thursday.11.26.2026"
+    % java Xor "hello world today is thursday" -k "thursday.11.26.2026" -e -b64
+    HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIdT0g=
+
+    # Encrypt a message using XOR; use the same key; write to cipher.txt
+    % java Xor "hello world today is thursday" -k "thursday.11.26.2026" -e -b64 -of cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIdT0g=
+
+    # Decrypt cipher.txt
+    % java Xor -if cipher.txt -k "thursday.11.26.2026" -d -b64
+    hello world today is thursday
