@@ -39,7 +39,6 @@ public class Rot88 {
     }
 
     public static void main(String[] args) {
-        // We initialize our local variables to null (cf. Rot13.java)
         String message = null;
         String inputfile = null;
         String outputfile = null;
