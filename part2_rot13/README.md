@@ -38,6 +38,10 @@ Later on, in this tutorial, we will introduce some secure cryptography algorithm
 
     % cd ~/Github/cryptography_tutorial/part2_rot13
 
+    % javac Rot13.java ../lib/argparse/*.java
+
+    % export CLASSPATH=.:../lib
+
     % java Rot13 "hello world today is monday november 2 2026" -o cipher.txt
 
     % cat cipher.txt
