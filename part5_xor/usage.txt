@@ -16,18 +16,18 @@ Example:
     % export CLASSPATH=.:../lib
 
     # Encrypt a message using the XOR algorithm; use a key of "thursday.11.26.2026"
-    % java Xor "hello world today is thursday" -k "thursday.11.26.2026" -e
+    % java Xor "hello world today is thursday" -k "thursday.11.26.2026" -e -b64
     HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIdT0g=
 
     # Encrypt a message using XOR; use the same key; write to cipher.txt
-    % java Xor "hello world today is thursday" -k "thursday.11.26.2026" -e -of cipher.txt
+    % java Xor "hello world today is thursday" -k "thursday.11.26.2026" -e -b64 -of cipher.txt
 
     # Inspect cipher.txt
     % cat cipher.txt
     HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIdT0g=
 
     # Decrypt cipher.txt
-    % java Xor -if cipher.txt -k "thursday.11.26.2026" -d
+    % java Xor -if cipher.txt -k "thursday.11.26.2026" -d -b64
     hello world today is thursday
 
 xor.py
@@ -61,3 +61,5 @@ Notes
 * Xor has the associative property, so (a^b)^b = a^(b^b) = a^0 = a
 * Xor cryptography is based on the fact that (m^k)^k = m
 *   where m is a character in our message and k is a character in our key
+* In Xor.java, base64 encoding is an option controlled by the -b64 flag
+* In xor.py, base64 encoding is always on
