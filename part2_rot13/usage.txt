@@ -53,6 +53,28 @@ Example:
     % python rot13.py -i cipher.txt
     does axial tilt cause the seasons?
 
+rot13.pl
+--------
+
+Example:
+
+    # cd into the part2_rot13 directory
+    % cd ~/Github/cryptography_tutorial/part2_rot13
+
+    # Encrypt a message using the rot13 algorithm
+    % perl rot13.pl "rayleigh scattering causes the sky to be blue"
+
+    # Encrypt a message using the rot13 algorithm and write to cipher.txt
+    % perl rot13.pl "rayleigh scattering causes the sky to be blue" -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    enlyrvtu fpnggrevat pnhfrf gur fxl gb or oyhr
+
+    # Decrypt cipher.txt
+    % perl rot13.pl -i cipher.txt
+    rayleigh scattering causes the sky to be blue
+
 Notes
 -----
 * Rot13 is an involution, which means, a function that acts as its own inverse
