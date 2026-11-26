@@ -75,6 +75,29 @@ Example:
     % perl rot13.pl -i cipher.txt
     rayleigh scattering causes the sky to be blue
 
+rot13.rb
+--------
+
+Example:
+
+    # cd into the part2_rot13 directory
+    % cd ~/Github/cryptography_tutorial/part2_rot13
+
+    # Encrypt a message using the rot13 algorithm
+    % ruby rot13.rb "the sun's gravity keeps planet earth in orbit"
+    gur fha'f tenivgl xrrcf cynarg rnegu va beovg
+
+    # Encrypt a message using the rot13 algorithm and write to cipher.txt
+    % ruby rot13.rb "the sun's gravity keeps planet earth in orbit" -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    gur fha'f tenivgl xrrcf cynarg rnegu va beovg
+
+    # Decrypt cipher.txt
+    % ruby rot13.rb -i cipher.txt
+    the sun's gravity keeps planet earth in orbit
+
 Notes
 -----
 * Rot13 is an involution, which means, a function that acts as its own inverse
