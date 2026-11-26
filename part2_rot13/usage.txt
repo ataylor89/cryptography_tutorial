@@ -1,0 +1,36 @@
+Example usage
+=============
+
+Rot13.java
+----------
+
+Example 1:
+
+    # cd to the part2_rot13 directory
+    % cd ~/Github/cryptography_tutorial/part2_rot13
+
+    # Compile the Java source code into bytecode
+    % javac Rot13.java ../lib/argparse/*.java
+
+    # Set the classpath
+    % export CLASSPATH=.:../lib
+
+    # Encrypt a message using the rot13 algorithm
+    % java Rot13 "does axial tilt cause the seasons?"
+    qbrf nkvny gvyg pnhfr gur frnfbaf?
+
+    # Encrypt a message using the rot13 algorithm, and write to cipher.txt
+    % java Rot13 "does axial tilt cause the seasons?" -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    qbrf nkvny gvyg pnhfr gur frnfbaf?
+
+    # Decrypt cipher.txt
+    % java Rot13 -i cipher.txt
+    does axial tilt cause the seasons?
+
+Notes
+-----
+* Rot13 is an involution, which means, a function that acts as its own inverse
+* In other words, Rot13(Rot13(message)) = message
