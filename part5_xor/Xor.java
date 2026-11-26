@@ -10,7 +10,27 @@ import java.util.Base64;
 
 public class Xor {
 
-    public static String xor(String message, String key) {
+    public Xor() {}
+
+    public String encrypt(String plaintext, String key, boolean base64) {
+        if (base64) {
+            String encrypted = xor(plaintext, key);
+            byte[] encoded = Base64.getEncoder().encode(encrypted.getBytes());
+            return new String(encoded);
+        }
+        return xor(plaintext, key);
+    }
+
+    public String decrypt(String ciphertext, String key, boolean base64) {
+        if (base64) {
+            byte[] buffer = Base64.getDecoder().decode(ciphertext.getBytes());
+            String decoded = new String(buffer);
+            return xor(decoded, key);
+        }
+        return xor(ciphertext, key);
+    }
+
+    public String xor(String message, String key) {
         char[] m = message.toCharArray();
         char[] k = key.toCharArray();
         int msglen = m.length;
@@ -28,7 +48,6 @@ public class Xor {
         String inputfile = null;
         String keyfile = null;
         String outputfile = null;
-        Boolean base64 = null;
         Boolean encrypt = null;
         Boolean decrypt = null;
         try {
@@ -38,7 +57,6 @@ public class Xor {
             options.addOption("if", "inputfile", true, "Path to input file");
             options.addOption("kf", "keyfile", true, "Path to keyfile");
             options.addOption("of", "outputfile", true, "Path to output file");
-            options.addOption("b64", "base64", false, Boolean.class, "Base64 encoding/decoding");
             options.addOption("e", "encrypt", false, Boolean.class, "Encrypt");
             options.addOption("d", "decrypt", false, Boolean.class, "Decrypt");
             ParseResult result = parser.parse(options, args);
@@ -47,7 +65,6 @@ public class Xor {
             inputfile = result.getParsedOptionValue("inputfile");
             keyfile = result.getParsedOptionValue("keyfile");
             outputfile = result.getParsedOptionValue("outputfile");
-            base64 = result.getParsedOptionValue("base64", false);
             encrypt = result.getParsedOptionValue("encrypt", false);
             decrypt = result.getParsedOptionValue("decrypt", false);
         } catch (ParseException e) {
@@ -60,6 +77,10 @@ public class Xor {
         }
         if (key == null && keyfile == null) {
             System.out.println("A key or a keyfile is required.");
+            System.exit(1);
+        }
+        if (!(encrypt ^ decrypt)) {
+            System.out.println("The encrypt flag or the decrypt flag must be set, but not both");
             System.exit(1);
         }
         if (message == null && inputfile != null) {
@@ -80,25 +101,13 @@ public class Xor {
                 System.exit(1);
             }
         }
+        Xor xor = new Xor();
         String output = null;
-        if (base64) {
-            if (encrypt) {
-                String encrypted = xor(message, key);
-                byte[] encoded = Base64.getEncoder().encode(encrypted.getBytes());
-                output = new String(encoded);
-            }
-            else if (decrypt) {
-                byte[] buffer = Base64.getDecoder().decode(message.getBytes());
-                String decoded = new String(buffer);
-                output = xor(decoded, key);
-            }
-            else {
-                System.out.println("An encrypt or decrypt flag is needed to use the base64 feature");
-                System.exit(1);
-            }
+        if (encrypt) {
+            output = xor.encrypt(message, key, true);
         }
         else {
-            output = xor(message, key);
+            output = xor.decrypt(message, key, true);
         }
         if (outputfile == null) {
             System.out.println(output);
