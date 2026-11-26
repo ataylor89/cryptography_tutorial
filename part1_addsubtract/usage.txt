@@ -13,7 +13,7 @@ Example 1:
     % javac AddSubtract.java ../lib/argparse/*.java
 
     # Set the classpath
-    % export CLASSPATH=.:../lib 
+    % export CLASSPATH=.:../lib
 
     # Encrypt a message; set the key to 100
     % java AddSubtract "hello world today is wednesday" -k 100 -e
@@ -23,6 +23,32 @@ Example 1:
 
     # Inspect cipher.txt
     % cat cipher.txt
+
+    # Decrypt cipher.txt
+    % java AddSubtract -i cipher.txt -k 100 -d
+    hello world today is wednesday
+
+Example 2 (base64 encoding):
+
+    # cd to the part1_addsubtract directory
+    % cd ~/Github/cryptography_tutorial/part1_addsubtract
+
+    # Compile the Java source code into bytecode
+    % javac AddSubtract.java ../lib/argparse/*.java
+
+    # Set the classpath
+    % export CLASSPATH=.:../lib
+
+    # Encrypt a message; set the key to 100
+    % java AddSubtract "hello world today is wednesday" -k 100 -e -b64
+    w4zDicOQw5DDk8KEw5vDk8OWw5DDiMKEw5jDk8OIw4XDncKEw43Dl8KEw5vDicOIw5LDicOXw4jDhcOd
+
+    # Encrypt a message; set the key to 100; write to cipher.txt
+    % java AddSubtract "hello world today is wednesday" -k 100 -e -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    w4zDicOQw5DDk8KEw5vDk8OWw5DDiMKEw5jDk8OIw4XDncKEw43Dl8KEw5vDicOIw5LDicOXw4jDhcOd
 
     # Decrypt cipher.txt
     % java AddSubtract -i cipher.txt -k 100 -d
