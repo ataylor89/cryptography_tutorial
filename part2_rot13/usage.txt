@@ -4,7 +4,7 @@ Example usage
 Rot13.java
 ----------
 
-Example 1:
+Example:
 
     # cd to the part2_rot13 directory
     % cd ~/Github/cryptography_tutorial/part2_rot13
@@ -28,6 +28,29 @@ Example 1:
 
     # Decrypt cipher.txt
     % java Rot13 -i cipher.txt
+    does axial tilt cause the seasons?
+
+rot13.py
+--------
+
+Example:
+
+    # cd into the part2_rot13 directory
+    % cd ~/Github/cryptography_tutorial/part2_rot13
+
+    # Encrypt a message using the rot13 algorithm
+    % python rot13.py "does axial tilt cause the seasons?"
+    qbrf nkvny gvyg pnhfr gur frnfbaf?
+
+    # Encrypt a message using the rot13 algorithm and write to cipher.txt
+    % python rot13.py "does axial tilt cause the seasons?" -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    qbrf nkvny gvyg pnhfr gur frnfbaf?
+
+    # Decrypt cipher.txt
+    % python rot13.py -i cipher.txt
     does axial tilt cause the seasons?
 
 Notes
