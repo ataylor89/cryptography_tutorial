@@ -29,3 +29,37 @@ Example:
     # Decrypt cipher.txt
     % java Xor -if cipher.txt -k "thursday.11.26.2026" -d -b64
     hello world today is thursday
+
+xor.py
+------
+
+Example:
+
+    # cd to the part5_xor directory
+    % cd ~/Github/cryptography_tutorial/part5_xor
+
+    # Encrypt a message using the XOR algorithm, with a key of "thursday.11.26.2026"
+    % python xor.py "hello world today is thursay" -k "thursday.11.26.2026" -e
+    HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIYVw==
+
+    # Encrypt a message using XOR, with the same key, and write to cipher.txt
+    % python xor.py "hello world today is thursay" -k "thursday.11.26.2026" -e -of cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIYVw==
+
+    # Decrypt cipher.txt
+    % python xor.py -if cipher.txt -k "thursday.11.26.2026" -d
+    hello world today is thursay
+
+Notes
+-----
+* The ^ symbol is often used to denote the Xor operation
+* Xor has an identity of 0, so a^0 = a
+* Xor has the self-inverse property, so a^a = 0
+* Xor has the associative property, so (a^b)^b = a^(b^b) = a^0 = a
+* Xor cryptography is based on the fact that (m^k)^k = m
+*   where m is a character in our message and k is a character in our key
+* In Xor.java, base64 encoding is an option controlled by the -b64 flag
+* In xor.py, base64 encoding is always on
