@@ -1,0 +1,102 @@
+Example usage
+=============
+
+keygen.py
+---------
+
+Example 1:
+
+    # cd to the part6_rsa directory
+    % cd ~/Github/cryptography_tutorial/part6_rsa
+
+    # Bring up the help menu
+    % python keygen.py -h
+    usage: keygen.py [-h] [-kl KEYLENGTH] [-lb LOWERBOUND] [-ub UPPERBOUND] [-o OUTPUTFILE] [-v]
+
+    Generate a RSA key
+
+    options:
+      -h, --help            show this help message and exit
+      -kl, --keylength KEYLENGTH
+      -lb, --lowerbound LOWERBOUND
+      -ub, --upperbound UPPERBOUND
+      -o, --outputfile OUTPUTFILE
+      -v, --verbose
+
+    # Generate an RSA key, use default settings, enable verbose mode
+    % python keygen.py -v
+    p = 5279, q = 7793
+    n = 41139247
+    ϕ(n) = 41126176
+    d = 41139265
+    e = 23467905
+    Adding key (n=41139247, e=23467905, d=41139265)
+    p = 9349, q = 1667
+    n = 15584783
+    ϕ(n) = 15573768
+    d = 15585041
+    e = 3022745
+    Adding key (n=15584783, e=3022745, d=15585041)
+    p = 5651, q = 4663
+    n = 26350613
+    ϕ(n) = 26340300
+    d = 26350831
+    e = 11875771
+    Adding key (n=26350613, e=11875771, d=26350831)
+    Generated key.txt in 1.6700990200042725 seconds
+
+    # Encrypt a message using the RSA key that we just created
+    % python encrypt.py "hello world today is friday" 
+    AJUdQrwf8QEKmoUAsGb8vX3fAOmK7QH9TDe9fd8BX7eIALBm/DImogDpiu0AnWHkvX3fAIZ0VQFNhXjNBH4A6YrtAb7I+7LhbgDpiu0AHJfmyF7WAXLiMQAUEdV3IRcATEW3
+
+    # Encrypt a message, using the same RSA key, and write to cipher.txt
+    % python encrypt.py "hello world today is friday" -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    AJUdQrwf8QEKmoUAsGb8vX3fAOmK7QH9TDe9fd8BX7eIALBm/DImogDpiu0AnWHkvX3fAIZ0VQFNhXjNBH4A6YrtAb7I+7LhbgDpiu0AHJfmyF7WAXLiMQAUEdV3IRcATEW3
+
+    # Decrypt cipher.txt
+    % python decrypt.py -i cipher.txt
+    hello world today is friday
+
+Notes
+-----
+* p and q are two large prime numbers that satisfy the following conditions:
+*   p and q are randomly chosen and distinct
+*   p and q are somewhere between a lower bound and an upper bound
+* n is defined as n = p * q
+*   n is often called the modulus
+*   n is a semiprime, the product of two prime numbers
+* d is a large, random integer that is relatively prime to (p-1)(q-1)
+*   Note that ϕ(n) = (p-1)(q-1), where ϕ is Euler's totient function
+*   Two integers are relatively prime if their greatest common divisor is 1
+*   d is often called the decryption exponent
+* e is the multiplicative inverse of d modulo (p-1)(q-1)
+*   e is often called the encryption exponent
+* The encryption function E(m) is defined as E(m) = m^e (mod n)
+*   m is the code point of a Unicode character (e.g. 97 is the code point for 'a')
+* The decryption function D(c) is defined as D(c) = c^d (mod n)
+*   c is the output of the encryption function
+*   D(c) = m and E(m) = c
+* We can use Euler's totient theorem to prove that D(E(M)) = M and E(D(C)) = C
+* This means that E(M) and D(C) are inverses and we can use them for cryptography
+* A public key is a list of (n, e) tuples
+*   We share our public key with a trusted party
+*   But we also keep our public key as secret as possible
+*   The trusted party shares their public key with us
+*   This is called an RSA handshake or a public key exchange
+*   The trusted party uses our public key to encrypt the messages they send us
+*   We use the trusted party's public key to encrypt messages we send them
+* A private key is a list of (n, d) tuples
+*   We do not share our private key with anyone
+*   We use our private key to decrypt messages that we receive from a trusted party
+*   The trusted party uses their private key to decrypt messages that they receive
+* Example:
+*   Alex and Bob both have their own public key and private key
+*   Alex shares his public key with Bob
+*   Bob shares his public key with Alex
+*   Alex uses Bob's public key to encrypt a message, and sends the message to Bob
+*   Bob uses his private key to decrypt the message he received from Alex
+*   Bob uses Alex's public key to encrypt a message, and sends the message to Alex
+*   Alex uses his private key to decrypt the message he received from Bob
