@@ -1,8 +1,14 @@
 Example usage
 =============
 
-keygen.py
----------
+Introduction
+------------
+
+The files keygen.py, encrypt.py, and decrypt.py are used by the user.
+The other files are helper files.
+
+Usage of keygen.py, encrypt.py, and decrypt.py
+----------------------------------------------
 
 Example 1:
 
