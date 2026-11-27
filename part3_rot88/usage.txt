@@ -53,3 +53,24 @@ Example 2:
     # Decrypt cipher.txt
     % java Rot88 -i cipher.txt -d -b64
     hello world today is thursday
+
+rot88.py
+--------
+
+Example 1:
+
+    # cd to the part3_rot88 directory
+    % cd ~/Github/cryptography_tutorial/part3_rot88
+
+    # Encrypt a message using the rot88 algorithm
+    % python rot88.py "hello world today is thursday" -e
+
+    # Encrypt a message using the rot88 algorithm and write to cipher.txt
+    % python rot88.py "hello world today is thursday" -e -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+
+    # Decrypt cipher.txt
+    % python rot88.py -i cipher.txt -d
+    hello world today is thursday
