@@ -32,8 +32,7 @@ public class Rot88 {
         for (char input : message.toCharArray()) {
             int source = (int) input;
             int target = (source + 0x88000) % 0x110000;
-            char output = (char) target;
-            builder.append(output);
+            builder.append(Character.toString(target));
         }
         return builder.toString();
     }
