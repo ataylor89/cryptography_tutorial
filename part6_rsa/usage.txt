@@ -66,6 +66,61 @@ Example 1:
     % python decrypt.py -i cipher.txt
     hello world today is friday
 
+Example 2:
+
+    # Generate an RSA key of length 5
+    # (That is, the key contains 5 (n, e, d) tuples)
+    # Choose primes p and q that fall between 10,000 and 20,000
+    # Save the key that we generate to key2.txt
+    # Enable verbose mode
+    % python keygen.py -kl 5 -lb 1e4 -ub 2e4 -o key2.txt -v
+    p = 13789, q = 11261
+    n = 155277929
+    ϕ(n) = 155252880
+    d = 155278219
+    e = 88045459
+    Adding key (n=155277929, e=88045459, d=155278219)
+    p = 11113, q = 11549
+    n = 128344037
+    ϕ(n) = 128321376
+    d = 128344261
+    e = 104569165
+    Adding key (n=128344037, e=104569165, d=128344261)
+    p = 13099, q = 16493
+    n = 216041807
+    ϕ(n) = 216012216
+    d = 216041857
+    e = 150613153
+    Adding key (n=216041807, e=150613153, d=216041857)
+    p = 16519, q = 13879
+    n = 229267201
+    ϕ(n) = 229236804
+    d = 229267477
+    e = 212996737
+    Adding key (n=229267201, e=212996737, d=229267477)
+    p = 19429, q = 14983
+    n = 291104707
+    ϕ(n) = 291070296
+    d = 291104879
+    e = 244762319
+    Adding key (n=291104707, e=244762319, d=291104879)
+    Generated key2.txt in 33.926862716674805 seconds
+
+    # Encrypt a message using the RSA key that we created
+    % python encrypt.py "hello world today is friday" -k key2.txt
+    A3LN7AbBvVgAgVdDDKgaQxB861UAJkAzAvpfDwMEfRcHMkLPC5G5igiIjrwDGY2vBv1v8ACU3xEKEgw6A52h2wAKUrIG28AxDKVqvwfrN8IAJkAzBq7WVgzbQkAMpWq/ChIMOgOdodsAClKy
+
+    # Encrypt a message, using the same RSA key, and write to cipher2.txt
+    % python encrypt.py "hello world today is friday" -k key2.txt -o cipher2.txt
+
+    # Inspect cipher2.txt
+    % cat cipher2.txt
+    A3LN7AbBvVgAgVdDDKgaQxB861UAJkAzAvpfDwMEfRcHMkLPC5G5igiIjrwDGY2vBv1v8ACU3xEKEgw6A52h2wAKUrIG28AxDKVqvwfrN8IAJkAzBq7WVgzbQkAMpWq/ChIMOgOdodsAClKy
+
+    # Decrypt cipher2.txt
+    % python decrypt.py -i cipher2.txt -k key2.txt
+    hello world today is friday
+
 Notes
 -----
 * p and q are two large prime numbers that satisfy the following conditions:
