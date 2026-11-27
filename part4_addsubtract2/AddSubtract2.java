@@ -74,7 +74,7 @@ public class AddSubtract2 {
             System.out.println("A key is required.");
             System.exit(1);
         }
-        if ((encrypt && decrypt) || (!encrypt && !decrypt)) {
+        if (!(encrypt ^ decrypt)) {
             System.out.println("The encrypt flag or the decrypt flag must be set, but not both");
             System.exit(1);
         }
