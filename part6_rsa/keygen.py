@@ -4,10 +4,8 @@ import argparse
 import math
 import primegen
 import random
-from settings import default_key_length
-from settings import default_key_path
-from settings import default_lower_bound
-from settings import default_upper_bound
+from settings import default_key_length, default_key_path
+from settings import default_lower_bound, default_upper_bound
 from settings import number_of_choices_for_d
 import time
 import util
@@ -29,7 +27,7 @@ def generate(keylength, lowerbound, upperbound, verbose=False):
     primes = primegen.generate_up_to(upperbound)
 
     # Filter out prime numbers that are less than the lower bound
-    primes = [p for p in primes if p > lowerbound]
+    primes = [p for p in primes if p >= lowerbound]
 
     # A variable for keeping track of the number of (n, e, d) tuples we discover
     # We can think of the full key as a list of (n, e, d) tuples
