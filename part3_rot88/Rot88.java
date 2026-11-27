@@ -68,6 +68,10 @@ public class Rot88 {
             System.out.println("A message or an input file is required.");
             System.exit(1);
         }
+        if (!(encrypt ^ decrypt)) {
+            System.out.println("The encrypt flag or the decrypt flag must be set, but not both");
+            System.exit(1);
+        }
         if (message == null && inputfile != null) {
             Path path = Path.of(inputfile);
             try {
@@ -84,14 +88,10 @@ public class Rot88 {
                 byte[] encoded = Base64.getEncoder().encode(encrypted.getBytes());
                 output = new String(encoded);
             }
-            else if (decrypt) {
+            else {
                 byte[] buffer = Base64.getDecoder().decode(message.getBytes());
                 String decoded = new String(buffer);
                 output = rot88(decoded);
-            }
-            else {
-                System.out.println("An encrypt or decrypt flag is needed to use the base64 feature");
-                System.exit(1);
             }
         }
         else {
