@@ -74,3 +74,23 @@ Example 1:
     # Decrypt cipher.txt
     % python rot88.py -i cipher.txt -d
     hello world today is thursday
+
+Example 2:
+
+    # cd to the part3_rot88 directory
+    % cd ~/Github/cryptography_tutorial/part3_rot88
+
+    # Encrypt a message using the rot88 algorithm
+    % python rot88.py "hello world today is thursday" -e -b64
+    8oiBqPKIgaXyiIGs8oiBrPKIga/yiICg8oiBt/KIga/yiIGy8oiBrPKIgaTyiICg8oiBtPKIga/yiIGk8oiBofKIgbnyiICg8oiBqfKIgbPyiICg8oiBtPKIgajyiIG18oiBsvKIgbPyiIGk8oiBofKIgbk=
+
+    # Encrypt a message using the rot88 algorithm and write to cipher.txt
+    % python rot88.py "hello world today is thursday" -e -b64 -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    8oiBqPKIgaXyiIGs8oiBrPKIga/yiICg8oiBt/KIga/yiIGy8oiBrPKIgaTyiICg8oiBtPKIga/yiIGk8oiBofKIgbnyiICg8oiBqfKIgbPyiICg8oiBtPKIgajyiIG18oiBsvKIgbPyiIGk8oiBofKIgbk=
+
+    # Decrypt cipher.txt
+    % python rot88.py -i cipher.txt -d -b64
+    hello world today is thursday
