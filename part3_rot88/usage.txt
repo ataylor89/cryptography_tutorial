@@ -41,14 +41,14 @@ Example 2:
 
     # Encrypt a message using the rot88 algorithm and use base64 encoding
     % java Rot88 "hello world today is thursday" -e -b64
-    6IGo6IGl6IGs6IGs6IGv6ICg6IG36IGv6IGy6IGs6IGk6ICg6IG06IGv6IGk6IGh6IG56ICg6IGp6IGz6ICg6IG06IGo6IG16IGy6IGz6IGk6IGh6IG5
+    8oiBqPKIgaXyiIGs8oiBrPKIga/yiICg8oiBt/KIga/yiIGy8oiBrPKIgaTyiICg8oiBtPKIga/yiIGk8oiBofKIgbnyiICg8oiBqfKIgbPyiICg8oiBtPKIgajyiIG18oiBsvKIgbPyiIGk8oiBofKIgbk=
 
     # Encrypt a message using the rot88 algorithm, use base64 encoding, and write to cipher.txt
     % java Rot88 "hello world today is thursday" -e -b64 -o cipher.txt
 
     # Inspect cipher.txt
     % cat cipher.txt
-    6IGo6IGl6IGs6IGs6IGv6ICg6IG36IGv6IGy6IGs6IGk6ICg6IG06IGv6IGk6IGh6IG56ICg6IGp6IGz6ICg6IG06IGo6IG16IGy6IGz6IGk6IGh6IG5
+    8oiBqPKIgaXyiIGs8oiBrPKIga/yiICg8oiBt/KIga/yiIGy8oiBrPKIgaTyiICg8oiBtPKIga/yiIGk8oiBofKIgbnyiICg8oiBqfKIgbPyiICg8oiBtPKIgajyiIG18oiBsvKIgbPyiIGk8oiBofKIgbk=
 
     # Decrypt cipher.txt
     % java Rot88 -i cipher.txt -d -b64
