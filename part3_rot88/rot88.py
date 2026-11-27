@@ -27,19 +27,16 @@ def main():
             message = file.read()
     else:
         message = args.message
-    if args.encrypt:
-        if args.base64:
+    if args.base64:
+        if args.encrypt:
             ciphertext = rot88(message)
             bytearr = ciphertext.encode('utf-8')
             output = base64.b64encode(bytearr).decode('utf-8')
         else:
-            output = rot88(message)
-    else:
-        if args.base64:
             decoded_ciphertext = base64.b64decode(message).decode('utf-8')
             output = rot88(decoded_ciphertext)
-        else:
-            output = rot88(message)
+    else:
+        output = rot88(message)
     if args.outputfile:
         with open(args.outputfile, 'w') as file:
             file.write(output)
