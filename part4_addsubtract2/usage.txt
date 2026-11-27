@@ -81,3 +81,6 @@ Notes:
 ------
 * In AddSubtract2.java, base64 encoding is an option controlled by the -b64 flag
 * In addsubtract2.py, base64 encoding is always on
+* AddSubtract2 differs from AddSubtract in one way:
+*   The key is a list of integers, instead of being a single integer
+*   When the key has many components it is actually more secure
