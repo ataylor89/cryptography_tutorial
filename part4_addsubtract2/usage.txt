@@ -1,0 +1,83 @@
+Example usage
+=============
+
+AddSubtract2.java
+----------------
+
+Example 1:
+
+    # cd to the part4_addsubtract2 directory
+    % cd ~/Github/cryptography_tutorial/part4_addsubtract2
+
+    # Compile the Java source code into bytecode
+    % javac AddSubtract2.java ../lib/argparse/*.java
+
+    # Set the classpath
+    % export CLASSPATH=.:../lib
+
+    # Encrypt a message; set the key to 100,101,102
+    % java AddSubtract2 "hello world today is thursday" -k 100,101,102 -e
+
+    # Encrypt a message; set the key to 100,101,102; write to cipher.txt
+    % java AddSubtract2 "hello world today is thursday" -k 100,101,102 -e -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+
+    # Decrypt cipher.txt
+    % java AddSubtract2 -i cipher.txt -k 100,101,102 -d
+    hello world today is thursday
+
+Example 2 (base64 encoding):
+
+    # cd to the part4_addsubtract2 directory
+    % cd ~/Github/cryptography_tutorial/part4_addsubtract2
+
+    # Compile the Java source code into bytecode
+    % javac AddSubtract2.java ../lib/argparse/*.java
+
+    # Set the classpath
+    % export CLASSPATH=.:../lib
+
+    # Encrypt a message; set the key to 100,101,102
+    % java AddSubtract2 "hello world today is thursday" -k 100,101,102 -e -b64
+    w4zDisOSw5DDlMKGw5vDlMOYw5DDicKGw5jDlMOKw4XDnsKGw43DmMKGw5jDjcObw5bDmMOKw4XDng==
+
+    # Encrypt a message; set the key to 100,101,102; write to cipher.txt
+    % java AddSubtract2 "hello world today is thursday" -k 100,101,102 -e -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    w4zDisOSw5DDlMKGw5vDlMOYw5DDicKGw5jDlMOKw4XDnsKGw43DmMKGw5jDjcObw5bDmMOKw4XDng==
+
+    # Decrypt cipher.txt
+    % java AddSubtract2 -i cipher.txt -k 100,101,102 -d
+    hello world today is thursday
+
+addsubtract2.py
+---------------
+
+Example:
+
+    # cd to the part4_addsubtract2 directory
+    % cd ~/Github/cryptography_tutorial/part4_addsubtract2
+
+    # Encrypt a message with a key of "100 101 102"
+    % python addsubtract2.py "hello world today is thursday" -e -k 100 101 102 
+    w4zDisOSw5DDlMKGw5vDlMOYw5DDicKGw5jDlMOKw4XDnsKGw43DmMKGw5jDjcObw5bDmMOKw4XDng==
+
+    # Encrypt a message with a key of "100 101 102" and write to cipher.txt
+    % python addsubtract2.py "hello world today is thursday" -e -k 100 101 102 -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    w4zDisOSw5DDlMKGw5vDlMOYw5DDicKGw5jDlMOKw4XDnsKGw43DmMKGw5jDjcObw5bDmMOKw4XDng==
+
+    # Decrypt cipher.txt
+    % python addsubtract2.py -i cipher.txt -k 100 101 102
+    hello world today is thursday
+
+Notes:
+------
+* In AddSubtract2.java, base64 encoding is an option controlled by the -b64 flag
+* In addsubtract2.py, base64 encoding is always on
