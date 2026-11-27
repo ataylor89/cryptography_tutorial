@@ -27,3 +27,29 @@ Example 1:
     # Decrypt cipher.txt
     % java Rot88 -i cipher.txt -d
     hello world today is thursday
+
+Example 2:
+
+    # cd to the part3_rot88 directory
+    % cd ~/Github/cryptography_tutorial/part3_rot88
+
+    # Compile the Java source code into bytecode
+    % javac Rot88.java ../lib/argparse/*.java
+
+    # Set the classpath
+    % export CLASSPATH=.:../lib
+
+    # Encrypt a message using the rot88 algorithm and use base64 encoding
+    % java Rot88 "hello world today is thursday" -e -b64
+    6IGo6IGl6IGs6IGs6IGv6ICg6IG36IGv6IGy6IGs6IGk6ICg6IG06IGv6IGk6IGh6IG56ICg6IGp6IGz6ICg6IG06IGo6IG16IGy6IGz6IGk6IGh6IG5
+
+    # Encrypt a message using the rot88 algorithm, use base64 encoding, and write to cipher.txt
+    % java Rot88 "hello world today is thursday" -e -b64 -o cipher.txt
+
+    # Inspect cipher.txt
+    % cat cipher.txt
+    6IGo6IGl6IGs6IGs6IGv6ICg6IG36IGv6IGy6IGs6IGk6ICg6IG06IGv6IGk6IGh6IG56ICg6IGp6IGz6ICg6IG06IGo6IG16IGy6IGz6IGk6IGh6IG5
+
+    # Decrypt cipher.txt
+    % java Rot88 -i cipher.txt -d -b64
+    hello world today is thursday
