@@ -51,8 +51,7 @@ def main():
             decoded_message = base64.b64decode(message).decode('utf-8')
             output = xor(decoded_message, key)
         else:
-            print('A direction is required for base64 encoding')
-            return
+            parser.error('A direction is required for base64 encoding')
     else:
         output = xor(message, key)
     if args.outputfile:
