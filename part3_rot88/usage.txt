@@ -63,16 +63,16 @@ Example 1:
     % cd ~/Github/cryptography_tutorial/part3_rot88
 
     # Encrypt a message using the rot88 algorithm
-    % python rot88.py "hello world today is thursday" -e
+    % python rot88.py "hello world today is thursday"
 
     # Encrypt a message using the rot88 algorithm and write to cipher.txt
-    % python rot88.py "hello world today is thursday" -e -o cipher.txt
+    % python rot88.py "hello world today is thursday" -o cipher.txt
 
     # Inspect cipher.txt
     % cat cipher.txt
 
     # Decrypt cipher.txt
-    % python rot88.py -i cipher.txt -d
+    % python rot88.py -i cipher.txt
     hello world today is thursday
 
 Example 2:
