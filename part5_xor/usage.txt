@@ -39,18 +39,18 @@ Example:
     % cd ~/Github/cryptography_tutorial/part5_xor
 
     # Encrypt a message using the XOR algorithm, with a key of "thursday.11.26.2026"
-    % python xor.py "hello world today is thursay" -k "thursday.11.26.2026" -e
+    % python xor.py "hello world today is thursay" -k "thursday.11.26.2026" -e -b64
     HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIYVw==
 
     # Encrypt a message using XOR, with the same key, and write to cipher.txt
-    % python xor.py "hello world today is thursay" -k "thursday.11.26.2026" -e -of cipher.txt
+    % python xor.py "hello world today is thursay" -k "thursday.11.26.2026" -e -b64 -of cipher.txt
 
     # Inspect cipher.txt
     % cat cipher.txt
     HA0ZHhxEFhZcXVUORllKU0kSXwdIARoGFhIYVw==
 
     # Decrypt cipher.txt
-    % python xor.py -if cipher.txt -k "thursday.11.26.2026" -d
+    % python xor.py -if cipher.txt -k "thursday.11.26.2026" -d -b64
     hello world today is thursay
 
 Notes
